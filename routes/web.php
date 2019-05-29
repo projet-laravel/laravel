@@ -19,16 +19,15 @@ Route::get('/test', function () {
     return 'welcome';
 });
 
-Route::get('/bonjour/{name?}/{bien?}', function ($name = "wang",$bien = "bien") {
-    return view("bonjour",["name" => $name , "bien" => $bien]);
+Route::get('/bonjour/{prenom?}/{bien?}', function ($prenom = "chuck", $bien = "bien") {
+    return view('bonjour', ['prenom' => $prenom, 'bien' => $bien]);
+
 });
 
-Route::get('/wall',"WalleController@index")->name('WalleIndex')->Middleware('auth');
+Route::get('/wall', 'WallController@index')->name('wallIndex')->middleware('auth');
+Route::post('/wall/write', 'WallController@write');
 
-Route::post('/wall/write',"WalleController@write");
-
-Route::get('/wall/delete/{id_message}',"WalleController@delete");
-
+Route::get('/wall/delete/{id_message}', 'WallController@delete');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

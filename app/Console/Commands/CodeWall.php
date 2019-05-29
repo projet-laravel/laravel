@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Message;
 use Illuminate\Console\Command;
+use App\Message;
 
-class CodeWall extends Command
+class codeWall extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'code:wall';
+    protected $signature = 'command:wall';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Afficher la liste des post sur le wall';
 
     /**
      * Create a new command instance.
@@ -38,8 +38,9 @@ class CodeWall extends Command
      */
     public function handle()
     {
-        $message =  Message::all();
-        $nb_message = count($message);
-        $this->info("This wall actually display ". $nb_message ." messages");
+
+        $messages = Message::all();
+        $nb_messages = count($messages);
+        $this->info('The wall have'. $nb_messages .'messages');
     }
 }

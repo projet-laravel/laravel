@@ -1,9 +1,11 @@
 @extends('layouts.layout')
 
 @section('title')
-    Bonjour
+  Bonjour
 @endsection
 
 @section('content')
-    welcome, {{ $name }} , ça va {{ $bien }} ?
+                  bonjour, {{$prenom}}, ça va {{$bien}} ?
+                  <br>
+                  bonjour, <?= $prenom; ?>, ça va <?= $bien; ?> ?
 @endsection
