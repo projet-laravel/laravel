@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -232,7 +232,12 @@
         </div>
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">Logout</a></li>
+                <li><a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}</a></li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </ul>
         </div>
     </header>
@@ -367,9 +372,11 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="row">
-            @yield('content')
             <!-- /col-lg-9 END SECTION MIDDLE -->
-                <!-- **********************************************************************************************************************************************************
+                <div class="col-lg-9 main-chart">
+                    @yield('content')
+                </div>
+            <!-- **********************************************************************************************************************************************************
                     RIGHT SIDEBAR CONTENT
                     *********************************************************************************************************************************************************** -->
                 <div class="col-lg-3 ds">
