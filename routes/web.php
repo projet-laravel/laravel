@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('/test', function () {
@@ -31,3 +31,6 @@ Route::get('/wall/delete/{id_message}', 'WallController@delete');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('auth');
