@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->float('solde')->nullable();
-            $table->string('stripe_id')->nullable()->collation('utf8mb4_bin');
+            $table->string('stripe_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
