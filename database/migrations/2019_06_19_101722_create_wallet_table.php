@@ -20,17 +20,6 @@ class CreateWalletTable extends Migration
 								Dépenses	Chèque
 								Transférer  Espéce
          */
-        Schema::create('wallet', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_user');
-            $table->string('type');
-            $table->string('method');
-            $table->float('amount');
-            $table->string("description")->nullable();
-            $table->string('place')->nullable();
-            $table->timestamp('day');
-            $table->timestamps();
-        });
 
         Schema::create('type', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -56,6 +45,24 @@ class CreateWalletTable extends Migration
             ['name' => 'Chèque'],
             ['name' => 'Espèces']
         ]);
+
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('id_user');
+
+            $table->bigInteger('id_type');
+            $table->foreign('id_type')->references('id')->on('type');
+
+            $table->bigInteger('id_method');
+            $table->foreign('id_method')->references('id')->on('method');
+
+            $table->float('amount');
+            $table->string("description")->nullable();
+            $table->string('place')->nullable();
+            $table->timestamp('day');
+            $table->timestamps();
+        });
+
     }
 
     /**

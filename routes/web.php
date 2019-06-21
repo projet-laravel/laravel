@@ -34,3 +34,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('auth');
+
+
+Route::get('/wallet', 'WalletController@index')->name('walletIndex')->middleware('auth');
