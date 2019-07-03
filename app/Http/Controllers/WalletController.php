@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Method;
+use App\Type;
 use App\Wallet;
 use Illuminate\Http\Request;
 use App\Message;
@@ -11,9 +13,17 @@ class WalletController extends Controller
     public function index()
     {
         $messages = Wallet::all();
-        return view('wallet.index')->withMessages($messages);
-    }
 
+        /*
+        echo "<pre>";
+        $wallet = $messages['wallets']->first();
+
+
+        dd($wallet->type->name);
+        */
+
+        return view('Wallet.index')->withMessages($messages);
+    }
 
     public function write(Request $request)
     {

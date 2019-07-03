@@ -21,26 +21,26 @@ class CreateWalletTable extends Migration
 								Transférer  Espéce
          */
 
-        Schema::create('type', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
 
-        DB::table('type')->insert([
+        DB::table('types')->insert([
             ['name' => 'Revenu'],
             ['name' => 'Dépense'],
             ['name' => 'Transférer']
         ]);
 
-        Schema::create('method', function (Blueprint $table) {
+        Schema::create('methods', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
 
 
-        DB::table('method')->insert([
+        DB::table('methods')->insert([
             ['name' => 'CB'],
             ['name' => 'Chèque'],
             ['name' => 'Espèces']
@@ -51,16 +51,24 @@ class CreateWalletTable extends Migration
             $table->bigInteger('id_user');
 
             $table->bigInteger('id_type');
-            $table->foreign('id_type')->references('id')->on('type');
+            //$table->foreign('id_type')->references('id')->on('type');
 
             $table->bigInteger('id_method');
-            $table->foreign('id_method')->references('id')->on('method');
+            //$table->foreign('id_method')->references('id')->on('method');
 
             $table->float('amount');
             $table->string("description")->nullable();
             $table->string('place')->nullable();
-            $table->timestamp('day');
+            $table->timestamp('day')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_type')->references('id')->on('types')
+
+                ->onDelete('cascade');
+
+            $table->foreign('id_method')->references('id')->on('types')
+
+                ->onDelete('cascade');
         });
 
     }
@@ -72,6 +80,9 @@ class CreateWalletTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet');
+        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('types');
+        Schema::dropIfExists('methods');
+
     }
 }
