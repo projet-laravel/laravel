@@ -11,4 +11,8 @@ class Wallet extends Model
     public function type(){
         return $this->hasOne('App\Type', 'id', 'id_type');
     }
+
+    public function method(){
+        return $this->hasOne('App\Method', 'id', 'id_method');
+    }
 }
