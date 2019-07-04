@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <!--
     <form method="POST" action='/wall/write'>
