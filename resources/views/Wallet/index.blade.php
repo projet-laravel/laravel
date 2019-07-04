@@ -45,7 +45,7 @@
                             </thead>
                             <tbody>
                             @foreach($messages['wallets'] as $message)
-                                @if ( $message->type->id == 1 )
+                                @if ( $message->id_type == 1 )
                                     <tr class="gradeX">
                                 @else
                                     <tr class="gradeC">
