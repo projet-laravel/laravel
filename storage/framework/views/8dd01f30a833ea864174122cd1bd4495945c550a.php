@@ -44,7 +44,7 @@
                             </thead>
                             <tbody>
                             <?php $__currentLoopData = $messages['wallets']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if( $message->type->id == 1 ): ?>
+                                <?php if( $message->id_type == 1 ): ?>
                                     <tr class="gradeX">
                                 <?php else: ?>
                                     <tr class="gradeC">
