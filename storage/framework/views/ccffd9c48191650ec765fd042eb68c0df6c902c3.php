@@ -37,7 +37,7 @@
 <div id="login-page">
     <div class="container">
         <form class="form-login" method="POST" action="<?php echo e(route('login')); ?>">
-            <h2 class="form-login-heading">sign in now</h2>
+            <h2 class="form-login-heading">Log in</h2>
             <div class="login-wrap">
                     <?php echo csrf_field(); ?>
 
@@ -109,6 +109,5 @@
 </body>
 
 </html>
-
 
 <?php /* /var/www/laravel/resources/views/auth/login.blade.php */ ?>

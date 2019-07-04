@@ -37,7 +37,7 @@
 <div id="login-page">
     <div class="container">
         <form class="form-login" method="POST" action="{{ route('login') }}">
-            <h2 class="form-login-heading">sign in now</h2>
+            <h2 class="form-login-heading">Log in</h2>
             <div class="login-wrap">
                     @csrf
 
@@ -107,4 +107,3 @@
 </body>
 
 </html>
-
