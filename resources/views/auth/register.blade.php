@@ -89,15 +89,13 @@
                         </div>
                       </div>
                       <div class="form-group row mb-0">
-                          <div class="col-md-6">
+                          <div class="col-md-8 offset-md-4">
                               <button type="submit" class="btn btn-primary">
                                   {{ __('Register') }}
                               </button>
-                          </div>
-                          <div class="col-md-6">
-                              <button type="submit" class="btn btn-primary">
-                                  {{ __('Login') }}
-                              </button>
+                              <a href="{{ route('login') }}"  class="btn btn-primary">
+                                  Login
+                              </a>
                           </div>
                       </div>
 
