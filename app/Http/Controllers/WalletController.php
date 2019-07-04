@@ -12,26 +12,18 @@ class WalletController extends Controller
 {
     public function index()
     {
-        $messages = Wallet::all();
-
-        /*
-        echo "<pre>";
-        $wallet = $messages['wallets']->first();
-
-
-        dd($wallet->type->name);
-        */
+        $messages = Wallet::orderBy('id', 'desc')->get();
 
         return view('Wallet.index')->withMessages($messages);
     }
 
-    public function write(Request $request)
+    public function write()
     {
-        $message = new Message;
-        $message->message = $request->input('message');
-        $message->id_author = \Auth::id();
-        $message->save();
-        return redirect()->route('wallIndex');
+        $messages['types'] = Type::all();
+        $messages['methodes'] = Method::all();
+
+        return view('Wallet.write')->withMessages($messages);
+
     }
     public function delete(Request $request)
     {

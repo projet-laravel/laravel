@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <base href="http://laravel.test/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
@@ -247,7 +248,7 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <h4 class="centered">Bonjour !</h4>
+                <h4 class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"></h4>
                 <?php $user = Auth::user(); ?>
                 <h5 class="centered"><?= $user->name;  ?></h5>
                 <li class="mt">

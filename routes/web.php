@@ -37,3 +37,5 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middle
 
 
 Route::get('/wallet', 'WalletController@index')->name('walletIndex')->middleware('auth');
+Route::get('/wallet/write', 'WalletController@write')->name('walletWrite')->middleware('auth');
+
