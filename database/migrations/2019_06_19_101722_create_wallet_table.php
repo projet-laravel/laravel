@@ -30,7 +30,7 @@ class CreateWalletTable extends Migration
         DB::table('types')->insert([
             ['name' => 'Revenu'],
             ['name' => 'Dépense'],
-            ['name' => 'Transférer']
+            ['name' => 'Virement']
         ]);
 
         Schema::create('methods', function (Blueprint $table) {

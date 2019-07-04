@@ -33,9 +33,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('auth');
+Route::get('/dashboard', 'WalletController@dashboard')->name('dashboard')->middleware('auth');
 
 
 Route::get('/wallet', 'WalletController@index')->name('walletIndex')->middleware('auth');
-Route::get('/wallet/write', 'WalletController@write')->name('walletWrite')->middleware('auth');
+Route::get('/wallet/write/{id?}', 'WalletController@write')->name('walletWrite')->middleware('auth');
+Route::post('/wallet/add', 'WalletController@add');
+Route::get('/wallet/delete/{id}', 'WalletController@delete');
+Route::POST('/wallet/update/{id}', 'WalletController@update');
 

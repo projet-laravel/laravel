@@ -1,26 +1,91 @@
 <?php $__env->startSection('content'); ?>
-
     <div class="row mt">
         <div class="col-lg-12">
             <div class="form-panel">
-                <h4 class="mb"><i class="fa fa-angle-right"></i> Input Messages</h4>
-                <form class="form-horizontal tasi-form" method="get">
-                    <div class="form-group has-success">
-                        <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Input with success</label>
+                <h4 class="mb"><i class="fa fa-angle-right"></i> Add</h4>
+                <form
+                        class="form-horizontal tasi-form"
+                        method="POST"
+                        <?php if(!isset($messages["data"][0])): ?>
+                            action="/wallet/add"
+                        <?php else: ?>
+                            action="/wallet/update/<?php echo e($messages["data"][0]->id); ?>"
+                        <?php endif; ?>
+                >
+                    <?php echo csrf_field(); ?>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Type</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputSuccess">
-                        </div>
-                    </div>
-                    <div class="form-group has-warning">
-                        <label class="col-sm-2 control-label col-lg-2" for="inputWarning">Input with warning</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputWarning">
+                            <select class="form-control" name="type" required>
+                                <?php $__currentLoopData = $messages['types']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option <?php if(isset($messages["data"][0]) &&$message->id == $messages["data"][0]->id_type): ?>
+                                            selected="selected"
+                                            <?php endif; ?>
+                                            value="<?php echo e($message->id); ?>">
+                                        <?php echo e($message->name); ?>
+
+                                    </option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group has-error">
-                        <label class="col-sm-2 control-label col-lg-2" for="inputError">Input with error</label>
+                        <label class="col-sm-2 control-label col-lg-2" for="inputWarning">Method</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputError">
+                            <select class="form-control" name="method" required>
+                                <?php $__currentLoopData = $messages['methods']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option <?php if(isset($messages["data"][0]) &&$message->id == $messages["data"][0]->id_type): ?>
+                                            selected="selected"
+                                            <?php endif; ?>
+                                            value="<?php echo e($message->id); ?>">
+                                        <?php echo e($message->name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputError">Amount</label>
+                        <div class="col-lg-10">
+                            <input type="number" step='0.01' class="form-control" id="inputError" name="amount" required
+                            <?php if(isset($messages['data'][0])): ?>
+                                value="<?php echo e($messages['data'][0]->amount); ?>"
+                            <?php endif; ?>
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputError">Description</label>
+                        <div class="col-lg-10">
+                            <input type="text" step='0.01' class="form-control" id="inputError" name="description" placeholder="option"
+                                   <?php if(isset($messages['data'][0])): ?>
+                                   value="<?php echo e($messages['data'][0]->description); ?>"
+                                    <?php endif; ?>
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputError">Place</label>
+                        <div class="col-lg-10">
+                            <input type="text" step='0.01' class="form-control" id="inputError" name="place" placeholder="option"
+                                   <?php if(isset($messages['data'][0])): ?>
+                                   value="<?php echo e($messages['data'][0]->place); ?>"
+                                    <?php endif; ?>
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-sm-2 control-label col-lg-2" for="inputError">Date</label>
+                        <div class="col-lg-10">
+                            <input type="date" class="form-control" id="inputError" name="date" required
+                                   <?php if(isset($messages['data'][0])): ?>
+                                   value="<? echo $messages['data'][0]->day ?>"
+                                    <?php endif; ?>
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <div class="col-lg-10">
+                            <button type="submit" class="btn btn-warning">Add</button>
                         </div>
                     </div>
                 </form>

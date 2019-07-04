@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
     <!--
     <form method="POST" action='/wall/write'>
@@ -11,7 +9,16 @@
 
             <div class="custom-bar-chart">
                 <div class="col-md-6">
-                    <h3>Wallet</h3>
+                    <h3>
+                        Wallet
+                        <i style="color:red">
+                        <?php if( Session::has('message') ): ?>
+                            <?php echo e(Session::get('message')); ?>
+
+                        <?php endif; ?>
+                        </i>
+                    </h3>
+
                 </div>
                 <div class="col-md-6">
                     <h3>
@@ -36,7 +43,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $messages['wallets']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if( $message->type->id == 1 ): ?>
                                     <tr class="gradeX">
                                 <?php else: ?>
@@ -44,13 +51,19 @@
                                  <?php endif; ?>
                                         <td><?php echo e($message->type->name); ?></td>
                                         <td><?php echo e($message->method->name); ?></td>
-                                        <td><?php echo e($message->amount); ?></td>
+                                        <td>
+                                            <?php if( $message->type->id == 2 || $message->type->id == 3 ): ?>
+                                                -
+                                            <?php endif; ?>
+                                                <?php echo e($message->amount); ?>
+
+                                        </td>
                                         <td><?php echo e($message->description); ?></td>
                                         <td><?php echo e($message->place); ?></td>
                                         <td><?php echo e($message->day); ?></td>
                                         <td>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                            <a href="/wallet/write/<?php echo e($message->id); ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                            <a href="/wallet/delete/<?php echo e($message->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                         </td>
                                     </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

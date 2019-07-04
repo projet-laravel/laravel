@@ -11,7 +11,15 @@
 
             <div class="custom-bar-chart">
                 <div class="col-md-6">
-                    <h3>Wallet</h3>
+                    <h3>
+                        Wallet
+                        <i style="color:red">
+                        @if( Session::has('message') )
+                            {{ Session::get('message')   }}
+                        @endif
+                        </i>
+                    </h3>
+
                 </div>
                 <div class="col-md-6">
                     <h3>
@@ -36,7 +44,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($messages as $message)
+                            @foreach($messages['wallets'] as $message)
                                 @if ( $message->type->id == 1 )
                                     <tr class="gradeX">
                                 @else
@@ -44,13 +52,18 @@
                                  @endif
                                         <td>{{  $message->type->name  }}</td>
                                         <td>{{  $message->method->name  }}</td>
-                                        <td>{{  $message->amount  }}</td>
+                                        <td>
+                                            @if ( $message->type->id == 2 || $message->type->id == 3 )
+                                                -
+                                            @endif
+                                                {{  $message->amount  }}
+                                        </td>
                                         <td>{{  $message->description  }}</td>
                                         <td>{{  $message->place  }}</td>
                                         <td>{{  $message->day  }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                            <a href="/wallet/write/{{ $message->id }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                            <a href="/wallet/delete/{{ $message->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                         </td>
                                     </tr>
                             @endforeach

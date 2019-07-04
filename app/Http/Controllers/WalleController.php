@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class WalleController extends Controller
 {
     public function index(){
+
+        $sum = DB::table('orders')
+            ->where('finalized', 1)
+            ->avg('price');
+
         $message = Message::all();
         return view('Wall.index')->withMessage($message);
     }
