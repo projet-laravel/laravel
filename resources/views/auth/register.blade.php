@@ -97,6 +97,9 @@
                               <a href="{{ route('login') }}"  class="btn btn-primary">
                                   Login
                               </a>
+                              <a href="{{ url('/login/github') }}" class="btn btn-github"><i class="fa fa-github"></i> Github</a>
+       <a href="{{ url('/login/facebook') }}" class="btn btn-facebook"> Facebook</a>
+       <a href="{{ url('/login/google') }}" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
                           </div>
                       </div>
 

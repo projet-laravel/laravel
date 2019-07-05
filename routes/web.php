@@ -42,3 +42,5 @@ Route::post('/wallet/add', 'WalletController@add');
 Route::get('/wallet/delete/{id}', 'WalletController@delete');
 Route::POST('/wallet/update/{id}', 'WalletController@update');
 
+Route::get('login/{provider}', 'SocialController@redirect');
+Route::get('login/{provider}/callback','SocialController@Callback');
